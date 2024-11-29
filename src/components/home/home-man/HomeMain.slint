@@ -1,0 +1,307 @@
+import { AboutSlint, Button, VerticalBox, HorizontalBox, ScrollView, ListView, ComboBox, StandardListView, TabWidget, GridBox } from "std-widgets.slint";
+import { ButtonBox } from "../button-box.slint";
+import { Theme } from "../../../assets/theme/theme.slint";
+import { Header } from "../header.slint";
+
+
+export component HomeMain inherits Window {
+    width: 800px;
+    height: 480px;
+    animate opacity {
+        duration: 0.3s;
+        easing: ease-out-quad;
+    }
+
+    in-out property <string> currentPage;
+    property <bool> tapBtnActive: false;
+    property <bool> warmBtnActive: true;
+    property <bool> coldBtnActive:false;
+
+    callback hamClick;
+    VerticalBox {
+        Header {
+            currentPage: currentPage;
+            previousPage: "";
+        }
+
+        HorizontalBox {
+            padding: 0;
+            VerticalBox {
+                height: 410px;
+                padding: 0;
+
+                Rectangle {
+                    background: Theme.palette.bg.white;
+                    height: 133px;
+                    border-radius: 20px;
+                    padding: 10px;
+
+                    HorizontalLayout {
+                        padding: 10px;
+                        spacing: 10px;
+
+                        VerticalBox {
+                            padding: 10px;
+                            Text {
+                                text: "Acqua calda sanitaria  | 52° C";
+                                font-size: 20px;
+                                color: Theme.palette.text.gray-3;
+                                font-family: "Sailec-Light";
+                                font-weight: 400;
+                                height: 35px;
+                                vertical-alignment: center;
+                            }
+
+                            Rectangle {
+                                HorizontalBox {
+                                    padding: 0px;
+                                    padding-bottom: -20px;
+                                    Text {
+                                        vertical-alignment: bottom;
+                                        text: "44.2°";
+                                        font-size: 50px;
+                                        color: Theme.palette.text.gray-1;
+                                        font-family: "Sailec-Light";
+                                        font-weight: 300;
+                                    }
+                                }
+                            }
+                        }
+
+                    // arrow up-down buttons
+                    VerticalBox {
+                            alignment: end;
+                            HorizontalBox {
+                                padding: 0;
+                                padding-bottom: -15px;
+
+                                ButtonBox {
+                                    img: @image-url("../../../assets/images/arrow-up.svg");
+                                    width: 80px;
+                                    height: 80px;
+                                }
+
+                                ButtonBox {
+                                    img: @image-url("../../../assets/images/arrow-down.svg");
+                                    width: 80px;
+                                    height: 80px;
+                                }
+                            }
+                        }
+
+                        Rectangle {
+                            width: 93px;
+                            border-width: 2px;
+                            border-color: Theme.palette.border.gray;
+                            border-radius: 15px;
+                            background: Theme.palette.gray-bg;
+                            tap-btn := ButtonBox {
+                                animate background { duration: 0.2s; }
+                                background: tapBtnActive ? Theme.palette.bg.white : Theme.palette.gray-bg;
+                                width: parent.width - 10px;
+                                height: parent.height - 10px;
+                                border-radius: 10px;
+
+                                Image {
+                                    source: @image-url("../../../assets/images/tap.svg");
+                                }
+
+                                clicked => {
+                                    tapBtnActive = !tapBtnActive;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                Rectangle {
+                    background: Theme.palette.bg.white;
+                    height: 270px;
+                    border-radius: 20px;
+                    padding: 10px;
+
+                    HorizontalLayout {
+                        padding: 10px;
+                        spacing: 10px;
+
+                        VerticalBox {
+                            padding: 10px;
+                            Text {
+                                text: "Impianto  | 52° C";
+                                font-size: 20px;
+                                color: Theme.palette.text.gray-3;
+                                font-family: "Sailec-Light";
+                                font-weight: 400;
+                            }
+
+                            Rectangle {
+                                padding: 0;
+                                HorizontalBox {
+                                    padding: 0;
+                                    padding-bottom: -30px;
+                                // alignment: end;
+                                height: 100%;
+                                    Text {
+                                        vertical-alignment: bottom;
+                                        padding: 0;
+                                        text: "23.5°";
+                                        font-weight: 300;
+                                        font-size: 116px;
+                                        font-family: "Sailec-Light";
+                                        color: Theme.palette.text.gray-1;
+                                    }
+                                }
+                            }
+                        }
+
+                    // arrow up-down buttons
+                    VerticalBox {
+                            alignment: end;
+                            HorizontalBox {
+                                padding: 0;
+                                padding-bottom: -10px;
+
+                                ButtonBox {
+                                    img: @image-url("../../../assets/images/arrow-up.svg");
+                                    width: 80px;
+                                    height: 80px;
+                                }
+
+                                ButtonBox {
+                                    img: @image-url("../../../assets/images/arrow-down.svg");
+                                    width: 80px;
+                                    height: 80px;
+                                }
+                            }
+                        }
+
+                        Rectangle {
+                            width: 93px;
+                            border-width: 2px;
+                            border-color: Theme.palette.border.gray;
+                            border-radius: 15px;
+                            background: Theme.palette.gray-bg;
+
+                        // season button
+                        VerticalBox {
+                                padding: 5px;
+
+                                Rectangle {
+                                    height: parent.height / 2 - 10px;
+                                    season-warm-btn := ButtonBox {
+                                        background: warmBtnActive ? Theme.palette.bg.white : Theme.palette.gray-bg;
+                                        border-radius: 10px;
+                                        animate background { duration: 0.2s; }
+                                        Image {
+                                            source: @image-url("../../../assets/images/season-warm.svg");
+                                        }
+
+                                        clicked => {
+                                            warmBtnActive = !warmBtnActive;
+                                        }
+                                    }
+                                }
+
+                                Rectangle {
+                                    season-cold-btn := ButtonBox {
+                                        animate background { duration: 0.2s; }
+                                        background: coldBtnActive ? Theme.palette.bg.white : Theme.palette.gray-bg;
+                                        border-radius: 10px;
+
+                                        Image {
+                                            source: @image-url("../../../assets/images/season-cold.svg");
+                                        }
+
+                                        clicked => {
+                                            coldBtnActive = !coldBtnActive;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            hamburger := ButtonBox {
+                background: Theme.palette.bg.white;
+                width: 103px;
+                border-radius: 20px;
+                Image {
+                    source: @image-url("../../../assets/images/hamburger.svg");
+                }
+
+                clicked => {
+                    currentPage = "HomeMaster"
+                }
+            }
+        }
+
+    // Text {
+    //     text: "asdasd";
+    // }
+    // Rectangle {
+    //     // background: purple;
+    //     padding: 0;
+        
+    //     GridLayout {
+    //         Row{
+    //             AppSelectCard {
+    //                 background: purple;
+    //                 border-width: isOpened == 1 ? 4px : 0px;
+    //                 border-color: isOpened == 1 ? black : red;
+    //                 Text {
+    //                     text: "purple";
+    //                     font-family: "Poppins";
+    //                 }
+                    
+    //                 clicked => {
+    //                     isOpened = 1;
+    //                 }
+    //             }
+    //             AppSelectCard {
+    //                 background: #984545;
+    //                 border-width: isOpened == 2 ? 4px : 0px;
+    //                 border-color: isOpened == 2 ? black : red;
+    //                 Text {
+    //                     text: "marun";
+    //                     font-family: "Poppins";
+    //                 }
+
+    //                 clicked => {
+    //                     isOpened = 2;
+    //                 }
+    //             }
+    //         }
+    //         Row{
+    //             AppSelectCard {
+    //                 background: #348229;
+    //                 border-width: isOpened == 3 ? 4px : 0px;
+    //                 border-color: isOpened == 3 ? black : red;
+    //                 Text {
+    //                     text: "green";
+    //                     font-family: "Poppins";
+    //                 }
+
+    //                 clicked => {
+    //                     isOpened = 3;
+    //                 }
+    //             }
+    //             AppSelectCard {
+    //                 background: #0d6083;
+    //                 border-width: isOpened == 4 ? 4px : 0px;
+    //                 border-color: isOpened == 4 ? black : red;
+    //                 Text {
+    //                     text: "blue";
+    //                     font-family: "Poppins";
+    //                 }
+
+    //                 clicked => {
+    //                     isOpened = 4;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+}
+}

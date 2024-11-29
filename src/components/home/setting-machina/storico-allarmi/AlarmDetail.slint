@@ -1,0 +1,147 @@
+import { VerticalBox, HorizontalBox } from "std-widgets.slint";
+import { Header } from "../../header.slint";
+import { Theme } from "../../../../assets/theme/theme.slint";
+import { PasswordScreen } from "../../../lock-screen/password-screen/PasswordScreen.slint";
+export component AlarmDetail inherits Window {
+    width: 800px;
+    height: 480px;
+    background: Theme.palette.gray-bg;
+
+    in-out property <string> currentPage;
+    in property <string> selectedAlarmName;
+    in property <string> selectedAlarmType;
+
+    in-out property <string> currentTab:"alarm";
+    in-out property <string> entered_password;
+
+    if currentTab == "alarm": VerticalBox {
+        Header {
+            currentPage <=> root.currentPage;
+            previousPage: "StoricoAllarmi";
+        }
+
+        HorizontalBox {
+            padding: 0;
+            Rectangle {
+                height: 82px;
+                border-radius: 20px;
+                background: Theme.palette.bg.white;
+                HorizontalLayout {
+                    padding: 10px;
+                    y: 10px;
+                    VerticalBox {
+                        padding: 10px;
+                        Text {
+                            text: selectedAlarmName;
+                            font-weight: 400;
+                            font-size: 20px;
+                            font-family: "Sailec-Medium";
+                            color: Theme.palette.text.gray-2;
+                        }
+                    }
+
+                    VerticalBox {
+                        padding: 10px;
+                        Text {
+                            text: selectedAlarmType;
+                            font-weight: 400;
+                            font-size: 20px;
+                            font-family: "Sailec-Light";
+                            color: Theme.palette.text.gray-3;
+                        }
+                    }
+                }
+            }
+        }
+
+        HorizontalBox {
+            padding: 0;
+            Rectangle {
+                height: 228px;
+                border-radius: 20px;
+                background: Theme.palette.bg.white;
+                HorizontalBox {
+                    padding: 20px;
+                    Text {
+                        text: "La temperatura di mandata di un impianto di riscaldamento è la temperatura dell'acqua all'uscita dalla caldaia (o dalla pompa di calore / sistema ibrido), dopo che è stata riscaldata dallo scambiatore di calore dell'apparecchio. Valori sempre compresi fra 10 e 45 °C.";
+                        wrap: char-wrap;
+                        font-weight: 400;
+                        font-size: 20px;
+                        font-family: "Sailec-Medium";
+                        color: Theme.palette.text.gray-2;
+                    }
+                }
+            }
+        }
+
+        HorizontalBox {
+            padding: 0;
+            Rectangle {
+                height: 82px;
+                border-radius: 20px;
+                background: Theme.palette.bg.black-1;
+                HorizontalLayout {
+                    padding: 10px;
+                    VerticalBox {
+                        padding: 10px;
+                        TouchArea {
+                            Image {
+                                x: 240px;
+                                height: 40px;
+                                width: 40px;
+                                source: @image-url("../../../../assets/images/lock-white-icon.svg");
+                            }
+
+                            Text {
+                                text: "Reset allarme";
+                                font-weight: 400;
+                                font-size: 20px;
+                                vertical-alignment: center;
+                                horizontal-alignment: center;
+                                font-family: "Sailec-Light";
+                                color: Theme.palette.text.white-1;
+                            }
+
+                            clicked => {
+                                currentTab = "password"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    if currentTab == "password" && entered_password != "1234": PasswordScreen {
+        entered_password <=> parent.entered_password;
+    }
+
+    if currentTab == "password" && entered_password == "1234": VerticalBox {
+        Rectangle {
+            border-radius: 20px;
+            background: Theme.palette.bg.white;
+            TouchArea {
+                HorizontalLayout {
+                    padding: 10px;
+                    y: 10px;
+                    VerticalBox {
+                        padding: 10px;
+                        Text {
+                            text: "Allarme resettato correttamente";
+                            vertical-alignment: center;
+                            horizontal-alignment: center;
+                            font-weight: 400;
+                            font-size: 26px;
+                            font-family: "Sailec-Medium";
+                            color: Theme.palette.text.gray-1;
+                        }
+                    }
+                }
+
+                clicked => {
+                    currentPage = "StoricoAllarmi";
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,21 @@
+export component KeyButton inherits Rectangle {
+    in-out property <string> keyNumber;
+  
+    // callbacks
+    callback keyPressed <=> touch.clicked;
+
+    accessible-role: button;
+    // stylings
+    border-radius: 10px;
+    border-width: 1px;
+    background: #EFEFEF;
+
+    touch := TouchArea {
+        Text {
+            font-family: "Sailec";
+            font-size: 26px;
+            font-weight: 400;
+            text: keyNumber;
+        }
+    }
+}

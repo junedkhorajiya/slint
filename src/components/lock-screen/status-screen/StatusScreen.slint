@@ -1,0 +1,67 @@
+export component StatusScreen inherits Rectangle {
+
+    callback onLockClick;
+
+    Rectangle {
+        width: 100%;
+        height: 100%;
+        background: black;
+ 
+        // Top Logo
+        Image {
+            source: @image-url("../../../assets/images/logo.svg");
+            width: 100px;
+            height: 100px;
+            x: (parent.width - self.width) / 2;
+            y: 20px;
+        }
+
+        Text {
+            text: "16:44";
+            font-size: 80px;
+            color: white;
+            x: (parent.width - self.width) / 2;
+            y: 140px;
+        }
+
+        Text {
+            text: "Lunedì, 15 Ottobre";
+            font-size: 20px;
+            color: white;
+            x: (parent.width - self.width) / 2;
+            y: 240px;
+        }
+
+        HorizontalLayout {
+            spacing: 40px;
+            width: 100%;
+            y: parent.height - 80px;
+            alignment: center;
+            Rectangle {
+                width: 20px;
+                height: 20px;
+                background: green;
+                border-radius: 10px;
+            }
+
+            Image {
+                source: @image-url("../../../assets/images/wifi.svg");
+                width: 20px;
+                height: 20px;
+            }
+
+            TouchArea {
+                width: 30px;
+                height: 30px;
+                clicked => {
+                    onLockClick();
+                }
+                Image {
+                    source: @image-url("../../../assets/images/lock.svg");
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+    }
+}

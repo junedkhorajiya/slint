@@ -1,0 +1,178 @@
+import { ScrollView, HorizontalBox, GridBox, VerticalBox } from "std-widgets.slint";
+import { Theme } from "../../../assets/theme/theme.slint";
+import { Header } from "../header.slint";
+
+component RightArrowIcon inherits VerticalBox {
+    height: 40px;
+    width: 40px;
+    callback clicked <=> touch.clicked;
+    accessible-role: button;
+
+    touch := TouchArea {
+        Image {
+            source: @image-url("../../../assets/images/right-arrow.svg");
+        }
+    }
+}
+
+export component SettingMachina inherits Window {
+    in-out property <string> currentPage;
+    VerticalBox {
+        Header {
+            currentPage <=> root.currentPage;
+            previousPage: "HomeMaster";
+        }
+
+        ScrollView {
+            width: 100%;
+            height: 412px;
+            HorizontalBox {
+                padding: 0;
+                GridBox {
+                    padding: 0;
+                    Row {
+                        Rectangle {
+                            height: 82px;
+                            width: 760px;
+                            border-radius: 20px;
+                            background: Theme.palette.bg.white;
+                            HorizontalLayout {
+                                padding: 10px;
+                                y: 10px;
+                                VerticalBox {
+                                    padding: 10px;
+                                    Text {
+                                        text: "Storico allarmi";
+                                        font-weight: 400;
+                                        font-size: 20px;
+                                        font-family: "Sailec-Medium";
+                                        color: Theme.palette.text.gray-2;
+                                    }
+                                }
+
+                                RightArrowIcon {
+                                    clicked => {
+                                        currentPage = "StoricoAllarmi";
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Row {
+                        Rectangle {
+                            height: 82px;
+                            width: 760px;
+                            border-radius: 20px;
+                            background: Theme.palette.bg.white;
+                            HorizontalLayout {
+                                padding: 10px;
+                                y: 10px;
+                                VerticalBox {
+                                    padding: 10px;
+                                    Text {
+                                        text: "Ora e Data";
+                                        font-weight: 400;
+                                        font-size: 20px;
+                                        font-family: "Sailec-Medium";
+                                        color: Theme.palette.text.gray-2;
+                                    }
+                                }
+
+                                RightArrowIcon {
+                                    clicked => {
+                                        currentPage = "OraEData"
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Row {
+                        Rectangle {
+                            height: 82px;
+                            width: 760px;
+                            border-radius: 20px;
+                            background: Theme.palette.bg.white;
+                            HorizontalLayout {
+                                padding: 10px;
+                                y: 10px;
+                                VerticalBox {
+                                    padding: 10px;
+                                    Text {
+                                        text: "Lingua";
+                                        font-weight: 400;
+                                        font-size: 20px;
+                                        font-family: "Sailec-Medium";
+                                        color: Theme.palette.text.gray-2;
+                                    }
+                                }
+
+                                RightArrowIcon {
+                                    clicked => {
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Row {
+                        Rectangle {
+                            height: 82px;
+                            width: 760px;
+                            border-radius: 20px;
+                            background: Theme.palette.bg.white;
+                            HorizontalLayout {
+                                padding: 10px;
+                                y: 10px;
+                                VerticalBox {
+                                    padding: 10px;
+                                    Text {
+                                        text: "Sistema";
+                                        font-weight: 400;
+                                        font-size: 20px;
+                                        font-family: "Sailec-Medium";
+                                        color: Theme.palette.text.gray-2;
+                                    }
+                                }
+
+                                RightArrowIcon {
+                                    clicked => {
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Row {
+                        Rectangle {
+                            height: 82px;
+                            width: 760px;
+                            border-radius: 20px;
+                            background: Theme.palette.bg.white;
+                            HorizontalLayout {
+                                padding: 10px;
+                                y: 10px;
+                                VerticalBox {
+                                    padding: 10px;
+                                    Text {
+                                        text: "Schermata di blocco";
+                                        font-weight: 400;
+                                        font-size: 20px;
+                                        font-family: "Sailec-Medium";
+                                        color: Theme.palette.text.gray-2;
+                                    }
+                                }
+
+                                RightArrowIcon {
+                                    clicked => {
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

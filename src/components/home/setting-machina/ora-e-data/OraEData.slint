@@ -1,0 +1,17 @@
+import { Theme } from "../../../../assets/theme/theme.slint";
+import { VerticalBox } from "std-widgets.slint";
+import { Header } from "../../header.slint";
+export component OraEData inherits Window {
+    width: 800px;
+    height: 480px;
+    background: Theme.palette.gray-bg;
+
+    in-out property <string> currentPage;
+
+    VerticalBox {
+        Header {
+            currentPage: currentPage;
+            previousPage: "SettingMachina";
+        }
+    }
+}

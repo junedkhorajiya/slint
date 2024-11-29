@@ -1,0 +1,61 @@
+import { AboutSlint, Button, VerticalBox, HorizontalBox } from "std-widgets.slint";
+import { FontImport } from "../../components/home/font-import.slint";
+import { Header } from "../../components/home/header.slint";
+import { HomeMain } from "../../components/home/home-man/HomeMain.slint";
+import { Theme } from "../../assets/theme/theme.slint";
+import { HomeMaster } from "../../components/home/home-master/HomeMaster.slint";
+import { StateGeneral } from "../../components/home/state-general/StateGeneral.slint";
+import { SettingMachina } from "../../components/home/setting-machina/SettingMachina.slint";
+import { StoricoAllarmi } from "../../components/home/setting-machina/storico-allarmi/StoricoAllarmi.slint";
+import { AlarmDetail } from "../../components/home/setting-machina/storico-allarmi/AlarmDetail.slint";
+import { OraEData } from "../../components/home/setting-machina/ora-e-data/OraEData.slint";
+
+export component Home inherits Window {
+    width: 800px;
+    height: 480px;
+    always-on-top: true;
+    background: Theme.palette.gray-bg;
+
+    in-out property <string> currentPage: "HomeMain";
+
+    // Home main page
+    if currentPage == "HomeMain": HomeMain {
+        currentPage <=> root.currentPage;
+    }
+
+    // Home master page
+    if currentPage == "HomeMaster": HomeMaster {
+        currentPage <=> root.currentPage;
+    }
+
+    //general state page
+    if currentPage == "StateGeneral": StateGeneral {
+        currentPage <=> root.currentPage;
+    }
+
+    // Setting machina page
+    if currentPage == "SettingMachina":SettingMachina {
+        currentPage <=> root.currentPage;
+    }
+
+    // Storico allarmi page
+    in-out property <string> selectedAlarmName;
+    in-out property <string> selectedAlarmType;
+    if currentPage == "StoricoAllarmi": StoricoAllarmi {
+        currentPage <=> root.currentPage;
+        selectedAlarmName <=> root.selectedAlarmName;
+        selectedAlarmType <=> root.selectedAlarmType;
+    }
+
+    // Alarm detail page
+    if currentPage == "AlarmDetail": AlarmDetail {
+        currentPage <=> root.currentPage;
+        selectedAlarmName: root.selectedAlarmName;
+        selectedAlarmType: root.selectedAlarmType;
+    }
+
+    // Ora E Data page
+    if currentPage == "OraEData": OraEData {
+        currentPage <=> root.currentPage;
+    }
+}

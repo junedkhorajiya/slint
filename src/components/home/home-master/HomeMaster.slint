@@ -1,0 +1,140 @@
+import { VerticalBox } from "std-widgets.slint";
+import { ButtonBox } from "../button-box.slint";
+import { Theme } from "../../../assets/theme/theme.slint";
+import { Header } from "../header.slint";
+
+component MenuButtons inherits ButtonBox {
+    in property <string> btnText;
+    in property <image> btnIcon;
+    background: Theme.palette.bg.white;
+    border-radius: 15px;
+    width: 150px;
+    VerticalLayout {
+        padding: 20px;
+        Text {
+            text: btnText;
+            horizontal-alignment: left;
+            font-size: 20px;
+            font-weight: 600;
+            font-family: "Sailec-Light";
+            color: Theme.palette.text.gray-2;
+        }
+
+        Rectangle {
+            height: 60px;
+            padding: 0;
+            Image {
+                source: btnIcon;
+                height: 60px;
+                width: 60px;
+                x: 0;
+            }
+        }
+    }
+}
+
+export component HomeMaster {
+    width: 800px;
+    height: 480px;
+
+    in-out property <string> currentPage;
+    animate opacity {
+        duration: 0.25s;
+        easing: ease-out-quad;
+    }
+    VerticalBox {
+        Header {
+            currentPage <=> root.currentPage;
+            previousPage: "HomeMain";
+        }
+
+        VerticalBox {
+            padding: 0;
+            x: 0;
+            Rectangle {
+                height: 116px;
+                width: 780px;
+                padding: 0;
+                background: Theme.palette.bg.white50;
+                border-radius: 20px;
+                HorizontalLayout {
+                    padding-left: 20px;
+                    padding-right: 20px;
+                    Rectangle {
+                        Text {
+                            horizontal-alignment: left;
+                            width: 100%;
+                            text: "MASTER";
+                            font-size: 26px;
+                            font-family: "Sailec-Medium";
+                        }
+                    }
+
+                    Rectangle {
+                        Text {
+                            horizontal-alignment: right;
+                            width: 100%;
+                            text: "GY678 - IU";
+                            font-size: 20px;
+                            font-weight: 400;
+                            color: Theme.palette.text.gray-3;
+                        }
+                    }
+                }
+            }
+
+            Rectangle {
+                height: 284px;
+                width: 780px;
+                background: Theme.palette.bg.white-2;
+                padding: 5px;
+                border-radius: 20px;
+
+                GridLayout {
+                    spacing: 5px;
+                    padding: 5px;
+
+                    MenuButtons {
+                        btnIcon: @image-url("../../../assets/images/Stato-generale.svg");
+                        btnText: "Stato generale";
+                        clicked => {
+                            currentPage = "StateGeneral";
+                        }
+                    }
+
+                    MenuButtons {
+                        btnIcon: @image-url("../../../assets/images/Setting-macchina.svg");
+                        btnText: "Setting macchina";
+                        clicked => {
+                            currentPage = "SettingMachina";
+                        }
+                    }
+
+                    MenuButtons {
+                        btnIcon: @image-url("../../../assets/images/modalità-silenzioso.svg");
+                        btnText: "Modalità silenzioso";
+                        clicked => {
+                            currentPage = "SettingMachina";
+                        }
+                    }
+
+                    MenuButtons {
+                        btnIcon: @image-url("../../../assets/images/area-riservata.svg");
+                        btnText: "Area riservata";
+                        clicked => {
+                            currentPage = "SettingMachina";
+                        }
+                    }
+
+                    MenuButtons {
+                        btnIcon: @image-url("../../../assets/images/standby-off.svg");
+                        btnText: "Standby Off";
+                        clicked => {
+                            currentPage = "SettingMachina";
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

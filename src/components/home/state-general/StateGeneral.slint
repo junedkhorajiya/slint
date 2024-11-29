@@ -1,0 +1,267 @@
+import { ScrollView, HorizontalBox, GridBox, VerticalBox } from "std-widgets.slint";
+import { Theme } from "../../../assets/theme/theme.slint";
+import { Header } from "../header.slint";
+
+component InfoIcon inherits VerticalBox {
+    height: 40px;
+    width: 40px;
+    callback clicked <=> touch.clicked;
+    accessible-role: button;
+
+    touch := TouchArea {
+        Image {
+            source: @image-url("../../../assets/images/info-icon.svg");
+        }
+    }
+}
+
+export component StateGeneral inherits Window {
+    width: 100%;
+    height: 100%;
+
+    in-out property <string> currentPage;
+    in-out property <bool> showInfo:false;
+    in-out property <string> infoTitle;
+    VerticalBox {
+        Header {
+            currentPage <=> root.currentPage;
+            previousPage: "HomeMaster";
+        }
+
+        if !showInfo: ScrollView {
+            HorizontalBox {
+                padding: 0;
+                GridBox {
+                    padding: 0;
+                    Row {
+                        Rectangle {
+                            height: 135px;
+                            width: 760px;
+                            border-radius: 20px;
+                            background: Theme.palette.bg.white;
+                            HorizontalLayout {
+                                padding: 10px;
+                                VerticalBox {
+                                    padding: 10px;
+                                    cardTitle1 := Text {
+                                        text: "Temperatura impianto";
+                                        font-weight: 400;
+                                        font-size: 20px;
+                                        font-family: "Sailec-Medium";
+                                        color: Theme.palette.text.gray-2;
+                                    }
+
+                                    Rectangle {
+                                        HorizontalBox {
+                                            padding: 0px;
+                                            padding-bottom: -20px;
+                                            Text {
+                                                text: "57 °C";
+                                                font-weight: 400;
+                                                font-size: 34px;
+                                                font-family: "Sailec-Medium";
+                                                color: Theme.palette.text.gray-3;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                InfoIcon {
+                                    clicked => {
+                                        showInfo = true;
+                                        infoTitle = cardTitle1.text
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Row {
+                        Rectangle {
+                            height: 135px;
+                            width: 760px;
+                            border-radius: 20px;
+                            background: Theme.palette.bg.white;
+                            HorizontalLayout {
+                                padding: 10px;
+                                VerticalBox {
+                                    padding: 10px;
+                                    cardTitle2 := Text {
+                                        text: "Richiesta impianto";
+                                        font-weight: 400;
+                                        font-size: 20px;
+                                        font-family: "Sailec-Medium";
+                                        color: Theme.palette.text.gray-2;
+                                    }
+
+                                    Rectangle {
+                                        HorizontalBox {
+                                            padding: 0px;
+                                            padding-bottom: -20px;
+                                            Text {
+                                                text: "La macchina non è in chiamata";
+                                                font-weight: 400;
+                                                font-size: 20px;
+                                                font-family: "Sailec-Medium";
+                                                color: Theme.palette.text.gray-3;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                InfoIcon {
+                                    clicked => {
+                                        showInfo = true;
+                                        infoTitle = cardTitle2.text
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Row {
+                        Rectangle {
+                            height: 135px;
+                            width: 760px;
+                            border-radius: 20px;
+                            background: Theme.palette.bg.white;
+                            HorizontalLayout {
+                                padding: 10px;
+                                VerticalBox {
+                                    padding: 10px;
+                                    cardTitle3 := Text {
+                                        text: "Stato sbrinamento";
+                                        font-weight: 400;
+                                        font-size: 20px;
+                                        font-family: "Sailec-Medium";
+                                        color: Theme.palette.text.gray-2;
+                                    }
+
+                                    Rectangle {
+                                        HorizontalBox {
+                                            padding: 0px;
+                                            padding-bottom: -20px;
+                                            Text {
+                                                text: "Attivo";
+                                                font-weight: 400;
+                                                font-size: 20px;
+                                                font-family: "Sailec-Medium";
+                                                color: Theme.palette.text.gray-3;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                InfoIcon {
+                                    clicked => {
+                                        showInfo = true;
+                                        infoTitle = cardTitle3.text
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Row {
+                        Rectangle {
+                            height: 135px;
+                            width: 760px;
+                            border-radius: 20px;
+                            background: Theme.palette.bg.white;
+                            HorizontalLayout {
+                                padding: 10px;
+                                VerticalBox {
+                                    padding: 10px;
+                                    cardTitle4 := Text {
+                                        text: "Stato sbrinamento";
+                                        font-weight: 400;
+                                        font-size: 20px;
+                                        font-family: "Sailec-Medium";
+                                        color: Theme.palette.text.gray-2;
+                                    }
+
+                                    Rectangle {
+                                        HorizontalBox {
+                                            padding: 0px;
+                                            padding-bottom: -20px;
+                                            Text {
+                                                text: "Attivo";
+                                                font-weight: 400;
+                                                font-size: 20px;
+                                                font-family: "Sailec-Medium";
+                                                color: Theme.palette.text.gray-3;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                InfoIcon {
+                                    clicked => {
+                                        showInfo = true;
+                                        infoTitle = cardTitle4.text
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if showInfo: HorizontalBox {
+            padding: 0;
+            height: 400px;
+
+            ScrollView {
+                Rectangle {
+                    border-radius: 20px;
+                    background: Theme.palette.bg.white;
+                    HorizontalLayout {
+                        padding: 10px;
+                        VerticalBox {
+                            padding: 10px;
+                            Text {
+                                text: infoTitle;
+                                font-weight: 400;
+                                font-size: 20px;
+                                font-family: "Sailec-Medium";
+                                color: Theme.palette.text.gray-2;
+                            }
+
+                            Rectangle {
+                                HorizontalBox {
+                                    y: 20px;
+                                    padding: 0px;
+                                    padding-bottom: -20px;
+                                    Text {
+                                        text: "La temperatura di mandata di un impianto di riscaldamento è la temperatura dell'acqua all'uscita dalla caldaia (o dalla pompa di calore / sistema ibrido), dopo che è stata riscaldata dallo scambiatore di calore dell'apparecchio. Valori sempre compresi fra 10 e 45 °C.";
+                                        font-weight: 400;
+                                        wrap: char-wrap;
+                                        font-size: 20px;
+                                        font-family: "Sailec-Medium";
+                                        color: Theme.palette.text.gray-3;
+                                    }
+                                }
+                            }
+                        }
+
+                        VerticalBox {
+                            height: 40px;
+                            width: 40px;
+                            accessible-role: button;
+                            touch := TouchArea {
+                                Image {
+                                    source: @image-url("../../../assets/images/cross-icon.svg");
+                                }
+
+                                clicked => {
+                                    showInfo = !showInfo;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

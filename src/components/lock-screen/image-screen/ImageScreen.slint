@@ -1,0 +1,19 @@
+export component ImageScreen inherits Rectangle {
+    width: 100%;
+    height: 100%;
+
+    callback onImageClick;
+
+    TouchArea {
+        width: 100%;
+        height: 100%;
+        clicked => {
+            onImageClick();
+        }
+        Image {
+            source: @image-url("../../../assets/images/screen.svg");
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

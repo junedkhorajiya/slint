@@ -1,5 +1,5 @@
 import { Theme } from "../../../../assets/theme/theme.slint";
-import { VerticalBox } from "std-widgets.slint";
+import { VerticalBox, HorizontalBox, Button } from "std-widgets.slint";
 import { Header } from "../../header.slint";
 export component OraEData inherits Window {
     width: 800px;
@@ -10,8 +10,23 @@ export component OraEData inherits Window {
 
     VerticalBox {
         Header {
-            currentPage: currentPage;
+            currentPage <=> root.currentPage;
             previousPage: "SettingMachina";
+        }
+
+        HorizontalBox {
+            Rectangle {
+                height: 68px;
+                border-radius: 20px;
+                border-width: 5px;
+                border-color: Theme.palette.bg.white;
+                background: Theme.palette.gray-bg;
+                Button {
+                    height: 48px;
+                    width: 377px;
+                    text: "Ora";
+                }
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ export struct Palette {
     bg:{
         white:brush,
         white50:brush,
+        white-1:brush,
         white-2:brush,
         success:brush,
         black-1:brush,
@@ -29,7 +30,14 @@ export struct Palette {
 export global Theme {
     in property <Palette> palette: {
         gray-bg: #DBDBDB,
-        bg:{ white: #EFEFEF, white50:#EFEFEF80, white-2:#e4e4e4, success: #14FF00, black-1:#404040 },
+        bg:{
+            white: #EFEFEF,
+            white50:#EFEFEF80,
+            white-1:#E5E5E5,
+            white-2:#e4e4e4,
+            success: #14FF00,
+            black-1:#404040,
+        },
         border: {
             gray: #e0e0e0,
         },

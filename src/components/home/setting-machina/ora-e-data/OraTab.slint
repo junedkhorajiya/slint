@@ -1,0 +1,157 @@
+import { HorizontalBox, VerticalBox } from "std-widgets.slint";
+import { Theme } from "../../../../assets/theme/theme.slint";
+export component OraTab inherits HorizontalLayout {
+    width: 100%;
+    height: 242px;
+    Rectangle {
+        border-radius: 20px;
+        border-width: 5px;
+        border-color: Theme.palette.bg.white;
+        background: Theme.palette.bg.white;
+        VerticalLayout {
+            height: 232px;
+            width: 382px;
+            x: 5px;
+            Rectangle {
+                background: Theme.palette.gray-bg;
+                border-radius: 20px;
+                HorizontalBox {
+                    padding: 3px;
+                    Rectangle {
+                        background: Theme.palette.bg.white-1;
+                        border-radius: 20px;
+                        Rectangle {
+                            background: Theme.palette.bg.white-1;
+                            border-radius: 20px;
+                            VerticalBox {
+                                GridLayout {
+                                    spacing-vertical: 5px;
+                                    Row {
+                                        HorizontalBox {
+                                            padding: 0;
+                                            Rectangle {
+                                                border-radius: 10px;
+                                                background: Theme.palette.bg.black-1;
+                                                height: 67px;
+                                                TouchArea {
+                                                    Image {
+                                                        source: @image-url("../../../../assets/images/up-white.svg");
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    Row {
+                                        HorizontalBox {
+                                            padding: 0;
+                                            Rectangle {
+                                                border-radius: 10px;
+                                                height: 67px;
+                                                Text {
+                                                    text: 17;
+                                                    font-family: "Sailec-Light";
+                                                    font-size: 52px;
+                                                    font-weight: 300;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    Row {
+                                        HorizontalBox {
+                                            padding: 0;
+                                            Rectangle {
+                                                border-radius: 10px;
+                                                background: Theme.palette.bg.white;
+                                                height: 67px;
+                                                TouchArea {
+                                                    Image {
+                                                        source: @image-url("../../../../assets/images/down-black.svg");
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        VerticalLayout {
+            height: 232px;
+            width: 382px;
+            x: 397px;
+            Rectangle {
+                background: Theme.palette.gray-bg;
+                border-radius: 20px;
+                HorizontalBox {
+                    padding: 3px;
+                    Rectangle {
+                        background: Theme.palette.bg.white-1;
+                        border-radius: 20px;
+                        Rectangle {
+                            background: Theme.palette.bg.white-1;
+                            border-radius: 20px;
+                            VerticalBox {
+                                GridLayout {
+                                    spacing-vertical: 5px;
+                                    Row {
+                                        HorizontalBox {
+                                            padding: 0;
+                                            Rectangle {
+                                                border-radius: 10px;
+                                                background: Theme.palette.bg.white;
+                                                height: 67px;
+                                                TouchArea {
+                                                    Image {
+                                                        source: @image-url("../../../../assets/images/up-black.svg");
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    Row {
+                                        HorizontalBox {
+                                            padding: 0;
+                                            Rectangle {
+                                                border-radius: 10px;
+                                                height: 67px;
+                                                Text {
+                                                    text: 38;
+                                                    font-family: "Sailec-Light";
+                                                    font-size: 52px;
+                                                    font-weight: 300;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    Row {
+                                        HorizontalBox {
+                                            padding: 0;
+                                            Rectangle {
+                                                border-radius: 10px;
+                                                background: Theme.palette.bg.white;
+                                                height: 67px;
+                                                TouchArea {
+                                                    Image {
+                                                        source: @image-url("../../../../assets/images/down-black.svg");
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

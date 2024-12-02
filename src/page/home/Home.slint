@@ -9,6 +9,7 @@ import { SettingMachina } from "../../components/home/setting-machina/SettingMac
 import { StoricoAllarmi } from "../../components/home/setting-machina/storico-allarmi/StoricoAllarmi.slint";
 import { AlarmDetail } from "../../components/home/setting-machina/storico-allarmi/AlarmDetail.slint";
 import { OraEData } from "../../components/home/setting-machina/ora-e-data/OraEData.slint";
+import { Lingua } from "../../components/home/setting-machina/Lingua/Lingua.slint";
 
 export component Home inherits Window {
     width: 800px;
@@ -56,6 +57,11 @@ export component Home inherits Window {
 
     // Ora E Data page
     if currentPage == "OraEData": OraEData {
+        currentPage <=> root.currentPage;
+    }
+
+    //Lingua
+    if currentPage == "Lingua": Lingua {
         currentPage <=> root.currentPage;
     }
 }

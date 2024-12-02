@@ -1,0 +1,71 @@
+import { Theme } from "../../../../assets/theme/theme.slint";
+import { Header } from "../../header.slint";
+import { VerticalBox } from "std-widgets.slint";
+
+component Card inherits Rectangle {
+    in property <string> name;
+    in-out property <string> selectedCard:"Italiano";
+
+    width: 377px;
+    height: 147px;
+    border-radius: 10px;
+    background: selectedCard == name ? Theme.palette.bg.white : Theme.palette.gray-bg;
+    drop-shadow-blur: selectedCard == name ? 6px : 0;
+    drop-shadow-color: #0000001A;
+    drop-shadow-offset-y: selectedCard == name ? 2px : 0;
+    TouchArea {
+        Text {
+            font-weight: 400;
+            font-size: 20px;
+            font-family: "Sailec-Light";
+            text: name;
+        }
+
+        clicked => {
+            selectedCard = name;
+        }
+    }
+}
+
+export component Lingua inherits Window {
+    width: 800px;
+    height: 480px;
+    background: Theme.palette.gray-bg;
+
+    in-out property <string> currentPage;
+    property <string> selectedCard:"Italiano";
+
+    VerticalBox {
+        Header {
+            currentPage <=> root.currentPage;
+            previousPage: "StoricoAllarmi";
+        }
+
+        GridLayout {
+            spacing: 5px;
+            Row {
+                Card {
+                    name: "Italiano";
+                    selectedCard <=> selectedCard;
+                }
+
+                Card {
+                    name: "English (UK)";
+                    selectedCard <=> selectedCard;
+                }
+            }
+
+            Row {
+                Card {
+                    name: "Deutsch";
+                    selectedCard <=> selectedCard;
+                }
+
+                Card {
+                    name: "Español";
+                    selectedCard <=> selectedCard;
+                }
+            }
+        }
+    }
+}

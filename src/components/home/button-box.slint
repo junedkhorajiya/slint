@@ -1,20 +1,12 @@
 export component ButtonBox inherits Rectangle {
     // property linking
-    // in-out property text <=> txt.text;
     in-out property img <=> img.source;
-    // in-out property imgWidth <=> img.width;
-    // in-out property imgHeight <=> img.height;
+    
 
     // callbacks
     callback clicked <=> touch.clicked;
 
     accessible-role: button;
-
-    // stylings
-    // border-radius: 0px;
-    // border-width: 1px;
-    // border-color: root.background.darker(25%);
-    // background: touch.pressed ? #6b8282 : touch.has-hover ? #ec00ec :  #460b0b;
 
     img := Image { }
 
